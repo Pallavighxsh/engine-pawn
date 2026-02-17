@@ -8,6 +8,12 @@
 --blue:#4da6ff;
 }
 
+/* Prevent horizontal scroll on iOS */
+html,body{
+max-width:100%;
+overflow-x:hidden;
+}
+
 /* ================= HEADER ================= */
 .site-header{
 display:flex;
@@ -16,11 +22,18 @@ align-items:center;
 padding:16px 28px;
 border-bottom:3px solid #000;
 background:#fff;
+flex-wrap:wrap;
+gap:10px;
 }
 
 .logo{
 font-weight:700;
 font-size:18px;
+}
+
+.menu{
+display:flex;
+flex-wrap:wrap;
 }
 
 .menu a{
@@ -68,14 +81,15 @@ padding-left:12px;
 /* ================= TWO COLUMN LAYOUT ================= */
 .two-col{
 display:grid;
-grid-template-columns: 420px 1fr;
+grid-template-columns: min(420px, 100%) 1fr;
 gap:40px;
 align-items:start;
 }
 
 /* ================= BOARD ================= */
 .board-wrap{
-width:420px;
+width:100%;
+max-width:420px;
 }
 
 .board{
@@ -113,12 +127,14 @@ user-select:none;
 display:flex;
 flex-direction:column;
 gap:16px;
+min-width:0;
 }
 
 .analyst-card{
 display:flex;
 align-items:center;
 gap:12px;
+flex-wrap:wrap;
 }
 
 .avatar{
@@ -161,6 +177,7 @@ border-radius:12px;
 background:var(--pink);
 color:#fff;
 cursor:pointer;
+width:100%;
 }
 
 .toggle{
@@ -168,6 +185,7 @@ padding:10px;
 border:2px solid #000;
 background:#fff;
 cursor:pointer;
+width:100%;
 }
 
 /* ================= SECTION 2 ================= */
@@ -177,8 +195,10 @@ text-align:center;
 
 /* ================= TABLET ================= */
 @media (max-width: 900px){
+
 .two-col{
 grid-template-columns:1fr;
+gap:28px;
 }
 
 .board-wrap{
@@ -193,21 +213,185 @@ order:2;
 /* ================= MOBILE ================= */
 @media (max-width: 600px){
 
-.page{padding:16px;}
-.card{padding:18px;}
-
-.square{
-font-size:clamp(20px,6vw,28px);
+.page{
+padding:16px;
+gap:20px;
 }
 
-.analysis-bubble{
-min-height:160px;
-font-size:14px;
+.card{
+padding:18px;
+border-radius:14px;
 }
 
 .site-header{
-flex-direction:column;
-align-items:flex-start;
-gap:10px;
+padding:14px 16px;
+}
+
+.menu a{
+margin-left:0;
+margin-right:16px;
+}
+
+.square{
+font-size:clamp(22px,7vw,30px);
+}
+
+.analysis-bubble{
+min-height:140px;
+font-size:14px;
+padding:14px;
+}
+
+.logo{
+font-size:16px;
+}
+
+.section-title{
+font-size:18px;
+}
+}
+
+/* ================= EXTRA SMALL PHONES ================= */
+/* iPhone SE / very narrow devices */
+@media (max-width: 420px){
+
+.site-header{
+padding:12px;
+}
+
+.menu{
+width:100%;
+}
+
+.menu a{
+font-size:14px;
+margin-right:14px;
+}
+
+.page{
+padding:12px;
+}
+
+.card{
+padding:14px;
+border-radius:12px;
+}
+
+.section-title{
+font-size:16px;
+}
+
+.square{
+font-size:clamp(18px,8vw,26px);
+}
+
+.avatar{
+width:52px;
+height:52px;
+}
+
+.analysis-bubble{
+font-size:13px;
+padding:12px;
+min-height:120px;
+}
+}
+
+
+/* ================= ULTRA NARROW SAFETY ================= */
+/* prevents ANY horizontal scroll ever */
+@media (max-width: 360px){
+
+.two-col{
+gap:18px;
+}
+
+.board-wrap{
+max-width:100%;
+}
+
+.square{
+font-size:clamp(16px,9vw,24px);
+}
+
+.logo{
+font-size:15px;
+}
+}
+
+
+/* ================= TALL IPHONES ================= */
+/* iPhone 14/15/16/17 tall screens */
+@media (min-height: 800px) and (max-width: 500px){
+
+.page{
+gap:24px;
+}
+
+.analysis-bubble{
+min-height:180px;
+}
+}
+
+
+/* ================= LANDSCAPE PHONES ================= */
+@media (max-width: 900px) and (orientation: landscape){
+
+.two-col{
+grid-template-columns: 1fr 1fr;
+gap:18px;
+}
+
+.board-wrap{
+max-width:360px;
+}
+
+.square{
+font-size:clamp(18px,4vw,26px);
+}
+}
+
+
+/* ================= SAFE AREA (NOTCH) ================= */
+@supports(padding: max(0px)){
+.site-header{
+padding-left:max(16px, env(safe-area-inset-left));
+padding-right:max(16px, env(safe-area-inset-right));
+}
+
+.page{
+padding-left:max(16px, env(safe-area-inset-left));
+padding-right:max(16px, env(safe-area-inset-right));
+}
+}
+
+
+/* ================= TOUCH TARGET SAFETY ================= */
+@media (pointer: coarse){
+
+.analyze-btn{
+min-height:48px;
+}
+
+.toggle{
+min-height:44px;
+}
+
+.menu a{
+padding:6px 0;
+}
+}
+
+
+/* ================= LARGE PHONES (Pro Max etc) ================= */
+@media (min-width: 430px) and (max-width: 700px){
+
+.board-wrap{
+margin:auto;
+max-width:440px;
+}
+
+.square{
+font-size:clamp(24px,5vw,34px);
 }
 }
