@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Engine Pawn</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="logo">♙ Engine Pawn, a chess analyzer</div>
+
+  <nav class="menu">
+    <a class="active" href="#">About</a>
+    <a href="#">How To Use</a>
+    <a href="#">Get in Touch</a>
+  </nav>
+</header>
+
+<!-- PAGE -->
+<main class="page">
+
+  <!-- ========================= -->
+  <!-- SECTION 1 (2 columns) -->
+  <!-- ========================= -->
+  <section class="card">
+
+    <h1 class="section-title">♙ Engine Pawn: the lab</h1>
+
+    <div class="two-col">
+
+      <!-- LEFT: BOARD -->
+      <div class="board-col">
+
+        <div class="board-wrap">
+          <div id="board" class="board"></div>
+        </div>
+
+        <div class="analyze-block">
+
+          <div class="analyze-caption">
+            Chess is about creativity and intuition — not memorizing moves.
+            Click below for an open-ended position analysis.
+          </div>
+
+          <button id="analyzeBtn" class="analyze-btn">
+            Analyze Position
+          </button>
+
+          <button id="colorToggle" class="toggle">
+            Toggle board mode
+          </button>
+
+        </div>
+
+      </div>
+
+      <!-- RIGHT: ANALYSIS -->
+      <div class="analysis-col">
+
+        <div class="analyst-card">
+          <img src="https://journal.phindia.com/images/experts/Pallavi%20Ghosh.jpeg" class="avatar" />
+          <div class="analyst-name">Pallavi Ghosh, Chess Noob </div>
+        </div>
+
+        <div class="analysis-bubble" id="analysisBubble">
+          Click a piece, then click a square to move. Set up a position, then analyze it. You will not get conventional theories to just memorize. You'll get an analysis that strives to move away from chess study and into chess theory.
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================= -->
+  <!-- SECTION 2 (1 column) -->
+  <!-- ========================= -->
+  <section class="card section-secondary">
+    <h2>Future Features</h2>
+    <p>
+      Opening detection, engine evaluation, saved positions,
+      AI commentary, and more coming soon.
+    </p>
+  </section>
+
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>

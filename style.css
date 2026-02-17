@@ -1,0 +1,213 @@
+*{margin:0;padding:0;box-sizing:border-box}
+
+:root{
+--black:#000;
+--white:#fff;
+--pink:#d7268a;
+--gray:#f5f5f5;
+--blue:#4da6ff;
+}
+
+/* ================= HEADER ================= */
+.site-header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:16px 28px;
+border-bottom:3px solid #000;
+background:#fff;
+}
+
+.logo{
+font-weight:700;
+font-size:18px;
+}
+
+.menu a{
+margin-left:26px;
+text-decoration:none;
+color:#000;
+font-weight:500;
+}
+
+.menu a.active{
+border-bottom:3px solid var(--pink);
+padding-bottom:4px;
+}
+
+/* ================= PAGE ================= */
+body{
+font-family:system-ui;
+background:#fafafa;
+}
+
+.page{
+max-width:1200px;
+margin:auto;
+padding:28px 20px;
+display:flex;
+flex-direction:column;
+gap:28px;
+}
+
+/* ================= CARD ================= */
+.card{
+background:#fff;
+border:3px solid #000;
+border-radius:18px;
+padding:26px;
+}
+
+/* ================= SECTION TITLE ================= */
+.section-title{
+margin-bottom:22px;
+border-left:6px solid var(--pink);
+padding-left:12px;
+}
+
+/* ================= TWO COLUMN LAYOUT ================= */
+.two-col{
+display:grid;
+grid-template-columns: 420px 1fr;
+gap:40px;
+align-items:start;
+}
+
+/* ================= BOARD ================= */
+.board-wrap{
+width:420px;
+}
+
+.board{
+width:100%;
+aspect-ratio:1/1;
+display:grid;
+grid-template-columns:repeat(8,1fr);
+grid-template-rows:repeat(8,1fr);
+border:3px solid #000;
+border-radius:12px;
+overflow:hidden;
+}
+
+.square{
+display:flex;
+align-items:center;
+justify-content:center;
+width:100%;
+height:100%;
+font-size:32px;
+cursor:pointer;
+user-select:none;
+}
+
+/* Pink board mode */
+.light{background:#f0d9b5;}
+.dark{background:#d7268a;}
+
+/* Black/white board mode */
+.light.black{background:#fff;}
+.dark.black{background:#000;}
+
+/* ================= ANALYSIS ================= */
+.analysis-col{
+display:flex;
+flex-direction:column;
+gap:16px;
+}
+
+.analyst-card{
+display:flex;
+align-items:center;
+gap:12px;
+}
+
+.avatar{
+width:64px;
+height:64px;
+border-radius:50%;
+border:2px solid #000;
+}
+
+.analysis-bubble{
+border:2px solid #000;
+border-radius:14px;
+padding:18px;
+background:#f5f5f5;
+min-height:220px;
+}
+
+/* ================= ANALYZE BLOCK ================= */
+.analyze-block{
+margin-top:14px;
+display:flex;
+flex-direction:column;
+gap:12px;
+}
+
+.analyze-caption{
+font-size:13px;
+background:#fafafa;
+border:2px solid #000;
+border-radius:12px;
+padding:12px;
+}
+
+.analyze-btn{
+padding:14px;
+font-size:16px;
+font-weight:600;
+border:3px solid #000;
+border-radius:12px;
+background:var(--pink);
+color:#fff;
+cursor:pointer;
+}
+
+.toggle{
+padding:10px;
+border:2px solid #000;
+background:#fff;
+cursor:pointer;
+}
+
+/* ================= SECTION 2 ================= */
+.section-secondary{
+text-align:center;
+}
+
+/* ================= TABLET ================= */
+@media (max-width: 900px){
+.two-col{
+grid-template-columns:1fr;
+}
+
+.board-wrap{
+margin:auto;
+}
+
+.analysis-col{
+order:2;
+}
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 600px){
+
+.page{padding:16px;}
+.card{padding:18px;}
+
+.square{
+font-size:clamp(20px,6vw,28px);
+}
+
+.analysis-bubble{
+min-height:160px;
+font-size:14px;
+}
+
+.site-header{
+flex-direction:column;
+align-items:flex-start;
+gap:10px;
+}
+}
