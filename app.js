@@ -26,6 +26,96 @@ function isWhitePiece(p){
   return "♙♖♘♗♕♔".includes(p);
 }
 
+////////////////////////////////////////////////////
+// 🆕 MOVE VALIDATION HELPERS
+////////////////////////////////////////////////////
+
+function getRow(i){ return Math.floor(i/8); }
+function getCol(i){ return i%8; }
+
+function pathClear(from,to){
+  const fr=getRow(from), fc=getCol(from);
+  const tr=getRow(to), tc=getCol(to);
+
+  const dr=Math.sign(tr-fr);
+  const dc=Math.sign(tc-fc);
+
+  let r=fr+dr;
+  let c=fc+dc;
+
+  while(r!==tr || c!==tc){
+    if(startPos[r*8+c] !== "") return false;
+    r+=dr;
+    c+=dc;
+  }
+  return true;
+}
+
+function isLegalMove(from,to,piece){
+
+  const fr=getRow(from), fc=getCol(from);
+  const tr=getRow(to), tc=getCol(to);
+
+  const dr = tr-fr;
+  const dc = tc-fc;
+
+  const target = startPos[to];
+  const white = isWhitePiece(piece);
+
+  // cannot capture own
+  if(target !== ""){
+    if(isWhitePiece(target) === white) return false;
+  }
+
+  switch(piece){
+
+    // white pawn
+    case "♙":
+      if(dc===0 && dr===-1 && target==="") return true;
+      if(dc===0 && dr===-2 && fr===6 && target==="" && startPos[(fr-1)*8+fc]==="") return true;
+      if(Math.abs(dc)===1 && dr===-1 && target!=="") return true;
+      return false;
+
+    // black pawn
+    case "♟":
+      if(dc===0 && dr===1 && target==="") return true;
+      if(dc===0 && dr===2 && fr===1 && target==="" && startPos[(fr+1)*8+fc]==="") return true;
+      if(Math.abs(dc)===1 && dr===1 && target!=="") return true;
+      return false;
+
+    // rook
+    case "♖": case "♜":
+      if(fr===tr || fc===tc) return pathClear(from,to);
+      return false;
+
+    // bishop
+    case "♗": case "♝":
+      if(Math.abs(dr)===Math.abs(dc)) return pathClear(from,to);
+      return false;
+
+    // queen
+    case "♕": case "♛":
+      if(fr===tr || fc===tc || Math.abs(dr)===Math.abs(dc))
+        return pathClear(from,to);
+      return false;
+
+    // knight
+    case "♘": case "♞":
+      if((Math.abs(dr)===2 && Math.abs(dc)===1) || (Math.abs(dr)===1 && Math.abs(dc)===2))
+        return true;
+      return false;
+
+    // king
+    case "♔": case "♚":
+      if(Math.abs(dr)<=1 && Math.abs(dc)<=1) return true;
+      return false;
+  }
+
+  return false;
+}
+
+////////////////////////////////////////////////////
+
 function drawBoard(){
   board.innerHTML="";
 
@@ -81,6 +171,12 @@ function movePiece(from,to){
   if(piece==="") return;
 
   const white = isWhitePiece(piece);
+
+  // ❌ block illegal movement
+  if(!isLegalMove(from,to,piece)){
+    bubble.innerHTML = "Illegal move.";
+    return;
+  }
 
   // ❌ prevent capturing own piece
   if(target!==""){
