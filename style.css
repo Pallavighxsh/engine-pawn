@@ -91,8 +91,11 @@ html,body{
 .board{
   width:100%;
   aspect-ratio:1/1;
+
   display:grid;
   grid-template-columns:repeat(8,1fr);
+  grid-template-rows:repeat(8,1fr);   /* ← ensures rows match columns */
+
   border:3px solid #000;
   border-radius:12px;
   overflow:hidden;
@@ -102,25 +105,34 @@ html,body{
   display:flex;
   align-items:center;
   justify-content:center;
+
   width:100%;
   height:100%;
+  aspect-ratio:1/1;      /* ← prevents squish forever */
+
   font-size:32px;
   cursor:pointer;
   user-select:none;
+
+  line-height:1;         /* ← fixes emoji vertical stretch */
+
   font-family:
     "Segoe UI Symbol",
     "Noto Chess",
     "DejaVu Sans",
     "Arial Unicode MS",
     sans-serif;
-  font-variant-emoji:text;
+
+  font-variant-emoji:text;   /* ← forces text chess pieces */
 }
 
 .light{ background:#f0d9b5; }
-.dark{ background:#d7268a; }
+
+/* Pantone-ish hot pink */
+.dark{ background:#ff007f; }   /* hot pink */
+
 .light.black{ background:#fff; }
 .dark.black{ background:#000; }
-
 /* ================= ANALYSIS ================= */
 .analysis-col{
   display:flex;
