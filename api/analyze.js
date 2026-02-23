@@ -15,7 +15,26 @@ export default async function handler(req, res) {
       return res.status(400).json({ text: "No FEN provided" });
     }
 
-    const query = `chess position FEN ${fen} middlegame plans`;
+    const [board, turn, castling] = fen.split(" ");
+
+const side = turn === "w" ? "white to move" : "black to move";
+
+const queens = (board.match(/q/gi) || []).length;
+const phase = queens === 0 ? "minor piece endgame plans" : "middlegame plans";
+
+const sameSideCastling =
+  castling.includes("K") && castling.includes("k");
+
+const castlingTheme = sameSideCastling
+  ? "same side castling strategy"
+  : "opposite side castling attack ideas";
+
+const query = `
+chess ${phase}
+${side}
+${castlingTheme}
+typical plans pawn structure strategy
+`;
 
     console.log("SEARCH QUERY:", query);
 
@@ -61,7 +80,7 @@ export default async function handler(req, res) {
     }
 
     // 🧠 combine for LLM
-    const finalPrompt = `
+   const finalPrompt = `
 You are a chess coach.
 
 Position FEN:
@@ -70,7 +89,16 @@ ${fen}
 Search context:
 ${extraContext}
 
-Give practical middlegame plans, candidate moves, and ideas.
+Give a SHORT practical analysis.
+
+FORMAT:
+- Evaluation (1 line)
+- 3 candidate moves with ideas
+- Middlegame plan (max 3 bullets)
+- What to avoid (1 line)
+
+Keep it under 120 words.
+Be concise and human-readable.
 `;
 
     const commentary = await getCommentary(finalPrompt);
