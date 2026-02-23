@@ -112,6 +112,14 @@ height:100%;
 font-size:32px;
 cursor:pointer;
 user-select:none;
+  font-family:
+  "Segoe UI Symbol",
+  "Noto Chess",
+  "DejaVu Sans",
+  "Arial Unicode MS",
+  sans-serif;
+
+font-variant-emoji: text;
 }
 
 /* Pink board mode */
