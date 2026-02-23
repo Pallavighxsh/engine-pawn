@@ -430,3 +430,12 @@ html,body{
     transform: translateY(0) scale(1);
   }
 }
+
+.modal {
+  overflow-y: auto;
+}
+
+.modal-content {
+  max-height: 90vh;
+  overflow-y: auto;
+}
