@@ -451,3 +451,19 @@ html,body{
   max-height: 90vh;
   overflow-y: auto;
 }
+
+.square{
+  font-variant-emoji:text;
+}
+
+/* nuclear option for mobile */
+@media (max-width:768px){
+  .square{
+    font-family:
+      "Noto Chess",
+      "Segoe UI Symbol",
+      "DejaVu Sans",
+      "Arial Unicode MS",
+      sans-serif;
+  }
+}
