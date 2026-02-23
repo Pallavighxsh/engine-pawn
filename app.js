@@ -303,4 +303,50 @@ analyzeBtn.onclick = async () => {
 drawBoard();
 drawCaptured();
 
+////////////////////////////////////////////////////
+// 🪟 MODAL LOGIC
+////////////////////////////////////////////////////
+
+const modal = document.getElementById("modal");
+const howLink = document.getElementById("howLink");
+const contactLink = document.getElementById("contactLink");
+const closeModal = document.getElementById("closeModal");
+const overlay = document.getElementById("modalOverlay");
+
+const howContent = document.getElementById("howContent");
+const contactContent = document.getElementById("contactContent");
+
+function openModal(section){
+  modal.classList.remove("hidden");
+
+  // hide both
+  howContent.classList.add("hidden");
+  contactContent.classList.add("hidden");
+
+  // show correct one
+  if(section==="how"){
+    howContent.classList.remove("hidden");
+  }
+  if(section==="contact"){
+    contactContent.classList.remove("hidden");
+  }
+}
+
+function hideModal(){
+  modal.classList.add("hidden");
+}
+
+howLink.addEventListener("click", (e)=>{
+  e.preventDefault();
+  openModal("how");
+});
+
+contactLink.addEventListener("click", (e)=>{
+  e.preventDefault();
+  openModal("contact");
+});
+
+closeModal.addEventListener("click", hideModal);
+overlay.addEventListener("click", hideModal);
+
 });
