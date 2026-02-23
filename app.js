@@ -1,3 +1,5 @@
+document.addEventListener("DOMContentLoaded", () => {
+
 const board = document.getElementById("board");
 const bubble = document.getElementById("analysisBubble");
 const toggle = document.getElementById("colorToggle");
@@ -172,13 +174,11 @@ function movePiece(from,to){
 
   const white = isWhitePiece(piece);
 
-  // ❌ block illegal movement
   if(!isLegalMove(from,to,piece)){
     bubble.innerHTML = "Illegal move.";
     return;
   }
 
-  // ❌ prevent capturing own piece
   if(target!==""){
     const targetWhite = isWhitePiece(target);
     if(targetWhite === white){
@@ -186,7 +186,6 @@ function movePiece(from,to){
       return;
     }
 
-    // 🆕 record capture
     if(targetWhite){
       capturedWhite.push(target);
     }else{
@@ -303,3 +302,5 @@ analyzeBtn.onclick = async () => {
 
 drawBoard();
 drawCaptured();
+
+});
