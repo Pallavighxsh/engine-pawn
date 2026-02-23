@@ -467,3 +467,18 @@ html,body{
       sans-serif;
   }
 }
+
+.square.light-piece{
+   color:#fff;                 /* solid fill */
+
+  /* neon white outline */
+  -webkit-text-stroke:1.5px #fff;
+
+  text-shadow:
+    0 0 4px #fff,
+    0 0 8px #fff,
+    0 0 14px #fff,
+    0 0 22px #fff;
+
+  filter: drop-shadow(0 0 6px #fff);
+}
