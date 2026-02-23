@@ -1,568 +1,432 @@
-*{margin:0;padding:0;box-sizing:border-box}
+/* ================= RESET ================= */
+* { margin:0; padding:0; box-sizing:border-box; }
 
 :root{
---black:#000;
---white:#fff;
---pink:#d7268a;
---gray:#f5f5f5;
---blue:#4da6ff;
+  --black:#000;
+  --white:#fff;
+  --pink:#d7268a;
+  --gray:#f5f5f5;
+  --blue:#4da6ff;
 }
 
-/* Prevent horizontal scroll on iOS */
 html,body{
-max-width:100%;
-overflow-x:hidden;
+  max-width:100%;
+  overflow-x:hidden;
+  font-family:system-ui;
+  background:#fafafa;
 }
 
 /* ================= HEADER ================= */
 .site-header{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:16px 28px;
-border-bottom:3px solid #000;
-background:#fff;
-flex-wrap:wrap;
-gap:10px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:16px 28px;
+  border-bottom:3px solid #000;
+  background:#fff;
+  flex-wrap:wrap;
+  gap:10px;
 }
 
 .logo{
-font-weight:700;
-font-size:18px;
+  font-weight:700;
+  font-size:18px;
 }
 
 .menu{
-display:flex;
-flex-wrap:wrap;
+  display:flex;
+  flex-wrap:wrap;
 }
 
 .menu a{
-margin-left:26px;
-text-decoration:none;
-color:#000;
-font-weight:500;
+  margin-left:26px;
+  text-decoration:none;
+  color:#000;
+  font-weight:500;
 }
 
 .menu a.active{
-border-bottom:3px solid var(--pink);
-padding-bottom:4px;
+  border-bottom:3px solid var(--pink);
+  padding-bottom:4px;
 }
 
 /* ================= PAGE ================= */
-body{
-font-family:system-ui;
-background:#fafafa;
-}
-
 .page{
-max-width:1200px;
-margin:auto;
-padding:28px 20px;
-display:flex;
-flex-direction:column;
-gap:28px;
+  max-width:1200px;
+  margin:auto;
+  padding:28px 20px;
+  display:flex;
+  flex-direction:column;
+  gap:28px;
 }
 
 /* ================= CARD ================= */
 .card{
-background:#fff;
-border:3px solid #000;
-border-radius:18px;
-padding:26px;
+  background:#fff;
+  border:3px solid #000;
+  border-radius:18px;
+  padding:26px;
 }
 
-/* ================= SECTION TITLE ================= */
 .section-title{
-margin-bottom:22px;
-border-left:6px solid var(--pink);
-padding-left:12px;
+  margin-bottom:22px;
+  border-left:6px solid var(--pink);
+  padding-left:12px;
 }
 
-/* ================= TWO COLUMN LAYOUT ================= */
+/* ================= LAYOUT ================= */
 .two-col{
-display:grid;
-grid-template-columns: min(420px, 100%) 1fr;
-gap:40px;
-align-items:start;
+  display:grid;
+  grid-template-columns:min(420px,100%) 1fr;
+  gap:40px;
+  align-items:start;
 }
 
 /* ================= BOARD ================= */
 .board-wrap{
-width:100%;
-max-width:420px;
+  width:100%;
+  max-width:420px;
 }
 
 .board{
-width:100%;
-aspect-ratio:1/1;
-display:grid;
-grid-template-columns:repeat(8,1fr);
-grid-template-rows:repeat(8,1fr);
-border:3px solid #000;
-border-radius:12px;
-overflow:hidden;
+  width:100%;
+  aspect-ratio:1/1;
+  display:grid;
+  grid-template-columns:repeat(8,1fr);
+  border:3px solid #000;
+  border-radius:12px;
+  overflow:hidden;
 }
 
 .square{
-display:flex;
-align-items:center;
-justify-content:center;
-width:100%;
-height:100%;
-font-size:32px;
-cursor:pointer;
-user-select:none;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:100%;
+  height:100%;
+  font-size:32px;
+  cursor:pointer;
+  user-select:none;
   font-family:
-  "Segoe UI Symbol",
-  "Noto Chess",
-  "DejaVu Sans",
-  "Arial Unicode MS",
-  sans-serif;
-
-font-variant-emoji: text;
+    "Segoe UI Symbol",
+    "Noto Chess",
+    "DejaVu Sans",
+    "Arial Unicode MS",
+    sans-serif;
+  font-variant-emoji:text;
 }
 
-/* Pink board mode */
-.light{background:#f0d9b5;}
-.dark{background:#d7268a;}
-
-/* Black/white board mode */
-.light.black{background:#fff;}
-.dark.black{background:#000;}
+.light{ background:#f0d9b5; }
+.dark{ background:#d7268a; }
+.light.black{ background:#fff; }
+.dark.black{ background:#000; }
 
 /* ================= ANALYSIS ================= */
 .analysis-col{
-display:flex;
-flex-direction:column;
-gap:16px;
-min-width:0;
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+  min-width:0;
 }
 
 .analyst-card{
-display:flex;
-align-items:center;
-gap:12px;
-flex-wrap:wrap;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
 }
 
 .avatar{
-width:64px;
-height:64px;
-border-radius:50%;
-border:2px solid #000;
+  width:64px;
+  height:64px;
+  border-radius:50%;
+  border:2px solid #000;
 }
 
 .analysis-bubble{
-border:2px solid #000;
-border-radius:14px;
-padding:18px;
-background:#f5f5f5;
-min-height:220px;
+  border:2px solid #000;
+  border-radius:14px;
+  padding:18px;
+  background:var(--gray);
+  min-height:220px;
 }
 
-/* ================= ANALYZE BLOCK ================= */
+/* ================= BUTTON BLOCK ================= */
 .analyze-block{
-margin-top:14px;
-display:flex;
-flex-direction:column;
-gap:12px;
+  margin-top:14px;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
 }
 
 .analyze-caption{
-font-size:13px;
-background:#fafafa;
-border:2px solid #000;
-border-radius:12px;
-padding:12px;
+  font-size:13px;
+  background:#fafafa;
+  border:2px solid #000;
+  border-radius:12px;
+  padding:12px;
 }
 
 .analyze-btn{
-padding:14px;
-font-size:16px;
-font-weight:600;
-border:3px solid #000;
-border-radius:12px;
-background:var(--pink);
-color:#fff;
-cursor:pointer;
-width:100%;
+  padding:14px;
+  font-size:16px;
+  font-weight:600;
+  border:3px solid #000;
+  border-radius:12px;
+  background:var(--pink);
+  color:#fff;
+  cursor:pointer;
+  width:100%;
 }
 
 .toggle{
-padding:10px;
-border:2px solid #000;
-background:#fff;
-cursor:pointer;
-width:100%;
+  padding:10px;
+  border:2px solid #000;
+  background:#fff;
+  cursor:pointer;
+  width:100%;
 }
 
-/* ================= SECTION 2 ================= */
-.section-secondary{
-text-align:center;
+.section-secondary{ text-align:center; }
+
+/* ================= MODAL ================= */
+.modal{
+  position:fixed;
+  inset:0;
+  z-index:9999;
 }
 
-/* ================= TABLET ================= */
-@media (max-width: 900px){
+.modal.hidden{ display:none; }
 
-.two-col{
-grid-template-columns:1fr;
-gap:28px;
+.modal-overlay{
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.6);
 }
 
-.board-wrap{
-margin:auto;
+.modal-content{
+  position:relative;
+  width:520px;
+  max-width:90%;
+  margin:8vh auto;
+  background:#fff;
+  padding:30px;
+  border-radius:12px;
 }
 
-.analysis-col{
-order:2;
-}
-}
+/* =========================================================
+==================== RESPONSIVE ============================
+========================================================= */
 
-/* ================= MOBILE ================= */
-@media (max-width: 600px){
+/* ---------- ≤1000px ---------- */
+@media (max-width:1000px){
+  .two-col{
+    display:flex;
+    flex-direction:column;
+    gap:40px;
+  }
 
-.page{
-padding:16px;
-gap:20px;
-}
+  .board-wrap,
+  .analysis-col{
+    max-width:620px;
+    margin:0 auto;
+  }
 
-.card{
-padding:18px;
-border-radius:14px;
-}
-
-.site-header{
-padding:14px 16px;
-}
-
-.menu a{
-margin-left:0;
-margin-right:16px;
+  .section-title{
+    text-align:center;
+  }
 }
 
-.square{
-font-size:clamp(22px,7vw,30px);
+/* ---------- ≤768px ---------- */
+@media (max-width:768px){
+
+  .site-header{
+    flex-direction:column;
+    align-items:flex-start;   /* ← keeps logo left */
+    gap:12px;
+  }
+
+  .menu{
+    justify-content:flex-start;
+    gap:20px;
+    width:100%;
+  }
+
+  .menu a{
+    margin-left:0;
+  }
+
+  .card{
+    padding:24px 18px;
+  }
+
+  .analysis-bubble{
+    font-size:15px;
+    line-height:1.6;
+  }
+
+  .avatar{
+    width:60px;
+    height:60px;
+  }
 }
 
-.analysis-bubble{
-min-height:140px;
-font-size:14px;
-padding:14px;
+/* ---------- ≤520px ---------- */
+@media (max-width:520px){
+
+  .page{ padding:10px; }
+
+  .card{
+    padding:18px 14px;
+    border-radius:10px;
+  }
+
+  .section-title{ font-size:22px; }
+
+  .square{
+    font-size:clamp(22px,7vw,30px);
+  }
+
+  .analysis-bubble{
+    font-size:14px;
+    padding:16px;
+    min-height:140px;
+  }
+
+  .modal-content{
+    width:92%;
+    margin:12vh auto;
+    padding:22px 18px;
+  }
 }
 
-.logo{
-font-size:16px;
+/* ---------- ≤420px ---------- */
+@media (max-width:420px){
+
+  .section-title{ font-size:16px; }
+
+  .square{
+    font-size:clamp(18px,8vw,26px);
+  }
+
+  .avatar{
+    width:52px;
+    height:52px;
+  }
+
+  .analysis-bubble{
+    font-size:13px;
+    padding:12px;
+    min-height:120px;
+  }
 }
 
-.section-title{
-font-size:18px;
-}
-}
+/* ---------- ≤360px ---------- */
+@media (max-width:360px){
 
-/* ================= EXTRA SMALL PHONES ================= */
-/* iPhone SE / very narrow devices */
-@media (max-width: 420px){
+  .two-col{ gap:18px; }
 
-.site-header{
-padding:12px;
-}
+  .square{
+    font-size:clamp(16px,9vw,24px);
+  }
 
-.menu{
-width:100%;
+  .logo{ font-size:15px; }
 }
 
-.menu a{
-font-size:14px;
-margin-right:14px;
+/* ---------- Touch Devices ---------- */
+@media (pointer:coarse){
+  .analyze-btn{ min-height:48px; }
+  .toggle{ min-height:44px; }
+  .menu a{ padding:6px 0; }
 }
 
-.page{
-padding:12px;
+/* ---------- Safe Area ---------- */
+@supports(padding:max(0px)){
+  .site-header{
+    padding-left:max(16px,env(safe-area-inset-left));
+    padding-right:max(16px,env(safe-area-inset-right));
+  }
+
+  .page{
+    padding-left:max(16px,env(safe-area-inset-left));
+    padding-right:max(16px,env(safe-area-inset-right));
+  }
 }
 
-.card{
-padding:14px;
-border-radius:12px;
-}
+/* ================= MODAL SECTION POLISH ================= */
 
-.section-title{
-font-size:16px;
-}
-
-.square{
-font-size:clamp(18px,8vw,26px);
-}
-
-.avatar{
-width:52px;
-height:52px;
-}
-
-.analysis-bubble{
-font-size:13px;
-padding:12px;
-min-height:120px;
-}
-}
-
-
-/* ================= ULTRA NARROW SAFETY ================= */
-/* prevents ANY horizontal scroll ever */
-@media (max-width: 360px){
-
-.two-col{
-gap:18px;
-}
-
-.board-wrap{
-max-width:100%;
-}
-
-.square{
-font-size:clamp(16px,9vw,24px);
-}
-
-.logo{
-font-size:15px;
-}
-}
-
-
-/* ================= TALL IPHONES ================= */
-/* iPhone 14/15/16/17 tall screens */
-@media (min-height: 800px) and (max-width: 500px){
-
-.page{
-gap:24px;
-}
-
-.analysis-bubble{
-min-height:180px;
-}
-}
-
-
-/* ================= LANDSCAPE PHONES ================= */
-@media (max-width: 900px) and (orientation: landscape){
-
-.two-col{
-grid-template-columns: 1fr 1fr;
-gap:18px;
-}
-
-.board-wrap{
-max-width:360px;
-}
-
-.square{
-font-size:clamp(18px,4vw,26px);
-}
-}
-
-
-/* ================= SAFE AREA (NOTCH) ================= */
-@supports(padding: max(0px)){
-.site-header{
-padding-left:max(16px, env(safe-area-inset-left));
-padding-right:max(16px, env(safe-area-inset-right));
-}
-
-.page{
-padding-left:max(16px, env(safe-area-inset-left));
-padding-right:max(16px, env(safe-area-inset-right));
-}
-}
-
-
-/* ================= TOUCH TARGET SAFETY ================= */
-@media (pointer: coarse){
-
-.analyze-btn{
-min-height:48px;
-}
-
-.toggle{
-min-height:44px;
-}
-
-.menu a{
-padding:6px 0;
-}
-}
-
-
-/* ================= LARGE PHONES (Pro Max etc) ================= */
-@media (min-width: 430px) and (max-width: 700px){
-
-.board-wrap{
-margin:auto;
-max-width:440px;
-}
-
-.square{
-font-size:clamp(24px,5vw,34px);
-}
-}
-
-.modal {
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-}
-
-.modal.hidden {
-  display: none;
-}
-
-.modal-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.6);
-}
-
-.modal-content {
+.modal-content{
   position: relative;
   width: 520px;
   max-width: 90%;
   margin: 8vh auto;
-  background: white;
-  padding: 30px;
-  border-radius: 12px;
+  background: #fff;
+  padding: 32px 30px;
+  border-radius: 18px;
+  border: 3px solid #000;
+  box-shadow: 0 18px 50px rgba(0,0,0,0.25);
+  animation: modalPop 0.25s ease-out;
 }
 
-/* =====================================
-TABLET (≤ 1000px)
-Stack board + analysis
-===================================== */
-@media (max-width: 1000px) {
-
-  .two-col {
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-  }
-
-  .board-wrap {
-    max-width: 520px;
-    margin: 0 auto;
-  }
-
-  .analysis-col {
-    max-width: 620px;
-    margin: 0 auto;
-  }
-
-  .section-title {
-    text-align: center;
-  }
+.modal-section h2{
+  margin-bottom: 18px;
+  border-left: 6px solid var(--pink);
+  padding-left: 12px;
+  font-size: 22px;
 }
 
-
-/* =====================================
-SMALL TABLET (≤ 768px)
-Tighten spacing
-===================================== */
-@media (max-width: 768px) {
-
-  .site-header {
-    flex-direction: column;
-    gap: 12px;
-    text-align: center;
-  }
-
-  .menu {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
-  .card {
-    padding: 24px 18px;
-  }
-
-  .analysis-bubble {
-    font-size: 15px;
-    line-height: 1.6;
-  }
-
-  .avatar {
-    width: 60px;
-    height: 60px;
-  }
+.modal-section p{
+  margin-bottom: 14px;
+  line-height: 1.6;
 }
 
-
-/* =====================================
-PHONE (≤ 520px)
-Board fills screen
-===================================== */
-@media (max-width: 520px) {
-
-  .page {
-    padding: 10px;
-  }
-
-  .card {
-    padding: 18px 14px;
-    border-radius: 10px;
-  }
-
-  .section-title {
-    font-size: 22px;
-  }
-
-  .logo {
-    font-size: 18px;
-  }
-
-  .board-wrap {
-    width: 100%;
-  }
-
-  #board {
-    width: 100% !important;
-    height: auto !important;
-  }
-
-  .analyze-btn {
-    width: 100%;
-    margin-top: 12px;
-  }
-
-  .toggle {
-    width: 100%;
-    margin-top: 10px;
-  }
-
-  .analyst-card {
-    justify-content: center;
-    text-align: center;
-  }
-
-  .analysis-bubble {
-    font-size: 14px;
-    padding: 16px;
-  }
+.modal-section ol{
+  margin: 12px 0 18px 20px;
+  padding-left: 8px;
 }
 
+.modal-section li{
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
 
-/* =====================================
-MODAL RESPONSIVE
-===================================== */
-@media (max-width: 600px) {
+.modal-section a{
+  color: var(--pink);
+  font-weight: 600;
+  text-decoration: none;
+}
 
-  .modal-content {
-    width: 92%;
-    margin: 12vh auto;
-    padding: 22px 18px;
+.modal-section a:hover{
+  text-decoration: underline;
+}
+
+/* Close button polish */
+.close-btn{
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  background: #fff;
+  border: 2px solid #000;
+  border-radius: 8px;
+  padding: 4px 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.close-btn:hover{
+  background: var(--pink);
+  color: #fff;
+}
+
+/* Subtle pop animation */
+@keyframes modalPop{
+  from{
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
   }
-
-  .modal h2 {
-    font-size: 20px;
-  }
-
-  .close-btn {
-    font-size: 20px;
+  to{
+    opacity: 1;
+    transform: translateY(0) scale(1);
   }
 }
