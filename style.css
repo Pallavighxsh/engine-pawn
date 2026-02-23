@@ -128,8 +128,7 @@ html,body{
 
 .light{ background:#f0d9b5; }
 
-/* Pantone-ish hot pink */
-.dark{ background:#ff007f; }   /* hot pink */
+.dark{ background:#d7268a; }  
 
 .light.black{ background:#fff; }
 .dark.black{ background:#000; }
