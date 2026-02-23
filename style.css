@@ -395,3 +395,166 @@ max-width:440px;
 font-size:clamp(24px,5vw,34px);
 }
 }
+
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+}
+
+.modal.hidden {
+  display: none;
+}
+
+.modal-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+}
+
+.modal-content {
+  position: relative;
+  width: 520px;
+  max-width: 90%;
+  margin: 8vh auto;
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+}
+
+/* =====================================
+TABLET (≤ 1000px)
+Stack board + analysis
+===================================== */
+@media (max-width: 1000px) {
+
+  .two-col {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .board-wrap {
+    max-width: 520px;
+    margin: 0 auto;
+  }
+
+  .analysis-col {
+    max-width: 620px;
+    margin: 0 auto;
+  }
+
+  .section-title {
+    text-align: center;
+  }
+}
+
+
+/* =====================================
+SMALL TABLET (≤ 768px)
+Tighten spacing
+===================================== */
+@media (max-width: 768px) {
+
+  .site-header {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+
+  .menu {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .card {
+    padding: 24px 18px;
+  }
+
+  .analysis-bubble {
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  .avatar {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+
+/* =====================================
+PHONE (≤ 520px)
+Board fills screen
+===================================== */
+@media (max-width: 520px) {
+
+  .page {
+    padding: 10px;
+  }
+
+  .card {
+    padding: 18px 14px;
+    border-radius: 10px;
+  }
+
+  .section-title {
+    font-size: 22px;
+  }
+
+  .logo {
+    font-size: 18px;
+  }
+
+  .board-wrap {
+    width: 100%;
+  }
+
+  #board {
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  .analyze-btn {
+    width: 100%;
+    margin-top: 12px;
+  }
+
+  .toggle {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .analyst-card {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .analysis-bubble {
+    font-size: 14px;
+    padding: 16px;
+  }
+}
+
+
+/* =====================================
+MODAL RESPONSIVE
+===================================== */
+@media (max-width: 600px) {
+
+  .modal-content {
+    width: 92%;
+    margin: 12vh auto;
+    padding: 22px 18px;
+  }
+
+  .modal h2 {
+    font-size: 20px;
+  }
+
+  .close-btn {
+    font-size: 20px;
+  }
+}
