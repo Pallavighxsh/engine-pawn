@@ -1,4 +1,13 @@
 import { getCommentary } from "../lib/groq.js";
+import crypto from "crypto";
+
+function fenHash(fen) {
+  return crypto
+    .createHash("md5")
+    .update(fen)
+    .digest("hex")
+    .slice(0, 6);
+}
 
 export default async function handler(req, res) {
   try {
@@ -29,11 +38,28 @@ const castlingTheme = sameSideCastling
   ? "same side castling strategy"
   : "opposite side castling attack ideas";
 
+// deterministic unique spice per FEN
+const hash = fenHash(fen);
+
+const themes = [
+  "typical plans",
+  "pawn structure strategy",
+  "attacking ideas",
+  "positional play",
+  "piece coordination",
+  "tactical motifs",
+  "strategic plans"
+];
+
+const themeIndex = parseInt(hash, 16) % themes.length;
+const theme = themes[themeIndex];
+
 const query = `
 chess ${phase}
 ${side}
 ${castlingTheme}
-typical plans pawn structure strategy
+${theme}
+position ${hash}
 `;
 
     console.log("SEARCH QUERY:", query);
