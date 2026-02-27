@@ -411,6 +411,29 @@ html,body{
   text-decoration: underline;
 }
 
+/* ================================
+   UNDO BUTTON
+================================ */
+
+.undo-btn{
+  margin-top:10px;
+  padding:12px 18px;
+  border:none;
+  border-radius:8px;
+  font-size:15px;
+  cursor:pointer;
+
+  background:#1f2937;
+  color:white;
+
+  transition:.2s;
+}
+
+.undo-btn:hover{
+  background:#374151;
+  transform:translateY(-1px);
+}
+
 /* Close button polish */
 .close-btn{
   position: absolute;
