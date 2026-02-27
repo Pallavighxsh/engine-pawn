@@ -5,6 +5,13 @@ const bubble = document.getElementById("analysisBubble");
 const toggle = document.getElementById("colorToggle");
 const analyzeBtn = document.getElementById("analyzeBtn");
 
+/* ================= NEW ADDITIONS ================= */
+const undoBtn = document.getElementById("undoBtn");
+
+let currentTurn = "white"; // white always starts
+let history = [];
+/* ================================================= */
+
 let selected = null;
 let blackMode = false;
 let moves = [];
@@ -64,50 +71,42 @@ function isLegalMove(from,to,piece){
   const target = startPos[to];
   const white = isWhitePiece(piece);
 
-  // cannot capture own
   if(target !== ""){
     if(isWhitePiece(target) === white) return false;
   }
 
   switch(piece){
 
-    // white pawn
     case "♙":
       if(dc===0 && dr===-1 && target==="") return true;
       if(dc===0 && dr===-2 && fr===6 && target==="" && startPos[(fr-1)*8+fc]==="") return true;
       if(Math.abs(dc)===1 && dr===-1 && target!=="") return true;
       return false;
 
-    // black pawn
     case "♟":
       if(dc===0 && dr===1 && target==="") return true;
       if(dc===0 && dr===2 && fr===1 && target==="" && startPos[(fr+1)*8+fc]==="") return true;
       if(Math.abs(dc)===1 && dr===1 && target!=="") return true;
       return false;
 
-    // rook
     case "♖": case "♜":
       if(fr===tr || fc===tc) return pathClear(from,to);
       return false;
 
-    // bishop
     case "♗": case "♝":
       if(Math.abs(dr)===Math.abs(dc)) return pathClear(from,to);
       return false;
 
-    // queen
     case "♕": case "♛":
       if(fr===tr || fc===tc || Math.abs(dr)===Math.abs(dc))
         return pathClear(from,to);
       return false;
 
-    // knight
     case "♘": case "♞":
       if((Math.abs(dr)===2 && Math.abs(dc)===1) || (Math.abs(dr)===1 && Math.abs(dc)===2))
         return true;
       return false;
 
-    // king
     case "♔": case "♚":
       if(Math.abs(dr)<=1 && Math.abs(dc)<=1) return true;
       return false;
@@ -174,10 +173,29 @@ function movePiece(from,to){
 
   const white = isWhitePiece(piece);
 
+  /* ================= NEW: TURN CHECK ================= */
+  if(
+    (currentTurn === "white" && !white) ||
+    (currentTurn === "black" && white)
+  ){
+    bubble.innerHTML = `${currentTurn}'s turn.`;
+    return;
+  }
+  /* =================================================== */
+
   if(!isLegalMove(from,to,piece)){
     bubble.innerHTML = "Illegal move.";
     return;
   }
+
+  /* ================= NEW: SAVE HISTORY ================= */
+  history.push({
+    board:[...startPos],
+    capturedWhite:[...capturedWhite],
+    capturedBlack:[...capturedBlack],
+    turn:currentTurn
+  });
+  /* ===================================================== */
 
   if(target!==""){
     const targetWhite = isWhitePiece(target);
@@ -197,9 +215,44 @@ function movePiece(from,to){
   startPos[to]=startPos[from];
   startPos[from]="";
 
+  /* ================= NEW: SWITCH TURN ================= */
+  currentTurn = currentTurn === "white" ? "black" : "white";
+  /* ==================================================== */
+
   bubble.innerHTML="Move played.";
   drawCaptured();
 }
+
+////////////////////////////////////////////////////
+// 🆕 UNDO FUNCTION
+////////////////////////////////////////////////////
+
+function undoMove(){
+
+  if(history.length===0){
+    bubble.innerHTML="Nothing to undo.";
+    return;
+  }
+
+  const prev = history.pop();
+
+  startPos.splice(0,64,...prev.board);
+  capturedWhite = prev.capturedWhite;
+  capturedBlack = prev.capturedBlack;
+  currentTurn = prev.turn;
+
+  bubble.innerHTML="Move undone.";
+
+  drawBoard();
+  drawCaptured();
+}
+
+/* connect button */
+if(undoBtn){
+  undoBtn.onclick = undoMove;
+}
+
+////////////////////////////////////////////////////
 
 toggle.onclick=()=>{
   blackMode=!blackMode;
@@ -207,7 +260,7 @@ toggle.onclick=()=>{
 };
 
 ////////////////////////////////////////////////////
-// 🆕 CAPTURED PIECES DISPLAY
+// CAPTURED PIECES DISPLAY
 ////////////////////////////////////////////////////
 
 function drawCaptured(){
@@ -274,7 +327,7 @@ function generateFEN(){
 }
 
 ////////////////////////////////////////////////////
-// 🧠 ANALYZE BUTTON
+// ANALYZE BUTTON
 ////////////////////////////////////////////////////
 
 analyzeBtn.onclick = async () => {
@@ -304,7 +357,7 @@ drawBoard();
 drawCaptured();
 
 ////////////////////////////////////////////////////
-// 🪟 MODAL LOGIC
+// MODAL LOGIC (UNCHANGED)
 ////////////////////////////////////////////////////
 
 const modal = document.getElementById("modal");
@@ -319,11 +372,9 @@ const contactContent = document.getElementById("contactContent");
 function openModal(section){
   modal.classList.remove("hidden");
 
-  // hide both
   howContent.classList.add("hidden");
   contactContent.classList.add("hidden");
 
-  // show correct one
   if(section==="how"){
     howContent.classList.remove("hidden");
   }
